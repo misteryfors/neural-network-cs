@@ -64,5 +64,10 @@ namespace NeuralNetwork
                 }
             }
         }
+
+        public void WeightUpdate(int layer, int neuron, int indWeight, double value)
+        {
+            layers[layer][neuron].SetWegth(value, indWeight);
+        }
     }
 }
