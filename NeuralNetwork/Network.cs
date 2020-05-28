@@ -5,27 +5,51 @@ using System.Collections.Generic;
 //using System.Threading.Tasks;
 
 
-// 188 строк кода всего
 namespace NeuralNetwork
 {
+    
+
     public class Network
     {
         List<Neuron>[] layers;
-        public Network(int[][] _layers)
+        double learnSpeed;
+        public Network(int[][] _layers, double _learnSpeed = 0.1, double stdWeight = 0.1)
         {
+            learnSpeed = _learnSpeed;
             layers = new List<Neuron>[_layers.Length];
             for (int i = 0; i < _layers.Length; i++)
             {
                 layers[i] = new List<Neuron>(_layers[i].Length);
                 for (int j = 0; j < _layers[i].Length; j++)
                 {
+
+                    /*
+                     Косяк полный
+                     надо снести полность биас и сделать заново
+                     
+                     */
                     if (i == 0)
                     {
-                        layers[i].Add(new Neuron(null));
+                        if (j != _layers[i].Length - 1)
+                            layers[i].Add(new Neuron(null, false, stdWeight));
+                        else
+                            layers[i].Add(new Neuron(null, true));
                     }
                     else
                     {
-                        layers[i].Add(new Neuron(layers[i - 1]));
+                        if (j != _layers[i].Length - 1)
+                            layers[i].Add(new Neuron(layers[i - 1], false, stdWeight));
+                        else
+                        {
+                            if(i != _layers.Length)
+                            {
+                                layers[i].Add(new Neuron(null, true));
+                            }
+                            else
+                            {
+                                layers[i].Add(new Neuron(layers[i - 1], false, stdWeight));
+                            }
+                        }
                     }
                 }
             }
@@ -65,9 +89,26 @@ namespace NeuralNetwork
             }
         }
 
-        public void WeightUpdate(int layer, int neuron, int indWeight, double value)
+        public void Learn(double[] needOut)
         {
-            layers[layer][neuron].SetWegth(value, indWeight);
+            for (int i = layers.Length - 1; i >= 0; i--)
+            {
+                if (i == layers.Length - 1)
+                {
+                    for (int j = 0; j < layers[i].Count; j++)
+                    {
+                        layers[i][j].FindErrorAndLearn(true, null, 0, needOut[j], learnSpeed);
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < layers[i].Count; j++)
+                    {
+                        layers[i][j].FindErrorAndLearn(false, layers[i + 1], j, learnSpeed);
+                    }
+                }
+            }
+
         }
     }
 }
