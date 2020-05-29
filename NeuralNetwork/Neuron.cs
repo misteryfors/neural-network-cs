@@ -24,35 +24,30 @@ namespace NeuralNetwork
             private set;
         }
 
-        public bool IsBias
-        {
-            get;
-            private set;
-        }
-
         public double OutputData
         {
             get;
             private set;
         }
 
+        public double Error
+        {
+            get;
+            private set;
+        }
+
+
         /// <summary>
         /// Конструктор нейрона
         /// </summary>
         /// <param name="Input"> Предшесвующий слой. Если нету то нужен null </param>
         /// <param name="stdWeight"> Стандартный вес у нейрона </param>
-        public Neuron(List<Neuron> Input, bool bias = false, double stdWeight = 1)
+        public Neuron(List<Neuron> Input, double stdWeight = 1)
         {
 
             if (Input == null)
             {
-                if (!bias)
-                    IsInput = true;
-                else
-                {
-                    IsBias = bias;
-                    OutputData = 1.0;
-                }
+                IsInput = true;
             }
             else
             {
@@ -83,10 +78,6 @@ namespace NeuralNetwork
         {
             if (!IsInput)
             {
-                if (IsBias)
-                {
-                    return false;
-                }
                 double[] neuron = new double[InputNeurons.Count];
                 for (int i = 0; i < InputNeurons.Count; i++)
                 {
@@ -135,15 +126,13 @@ namespace NeuralNetwork
             Weigts[ind] = weight;
         }
 
-        void Correct(double error, double learnSpeed)
+        public void Correct(double learnSpeed)
         {
             if (IsInput)
                 return;
+            
+            double deltaError = Error * (OutputData * (1 - OutputData));
 
-            if (IsBias)
-                return;
-
-            double deltaError = error * (OutputData * (1 - OutputData));
             for (int i = 0; i < InputNeurons.Count; i++)
             {
                 double correct = deltaError * InputNeurons[i].OutputData * learnSpeed;
@@ -151,24 +140,21 @@ namespace NeuralNetwork
             }
         }
 
-        public void FindErrorAndLearn(bool isOutputLayer, List<Neuron> prewLayer, int indInLayer, double learnSpeed = 0.1, double needOut = 0)
+        public void FindError(bool isOutputLayer, List<Neuron> prewLayer, int indInLayer, double needOut = 0)
         {
-            double error = 0.0;
+            Error = 0;
             if (isOutputLayer)
             {
-                error = needOut - OutputData;
+                Error = needOut - OutputData;
+                return;
             }
             else
             {
                 for (int i = 0; i < prewLayer.Count; i++)
                 {
-                    if (prewLayer[i].IsBias)
-                        continue;
-
-                    error += prewLayer[i].Weigts[indInLayer] * prewLayer[i].OutputData;
+                    Error += prewLayer[i].Weigts[indInLayer] * prewLayer[i].OutputData;
                 }
             }
-            Correct(error, learnSpeed);
         }
     }
 }

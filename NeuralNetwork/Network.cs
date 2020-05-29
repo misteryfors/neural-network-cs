@@ -30,26 +30,26 @@ namespace NeuralNetwork
                      */
                     if (i == 0)
                     {
-                        if (j != _layers[i].Length - 1)
-                            layers[i].Add(new Neuron(null, false, stdWeight));
-                        else
-                            layers[i].Add(new Neuron(null, true));
+                        //if (j != _layers[i].Length - 1)
+                            layers[i].Add(new Neuron(null, stdWeight));
+                        //else
+                        //    layers[i].Add(new Neuron(null, true));
                     }
                     else
                     {
-                        if (j != _layers[i].Length - 1)
-                            layers[i].Add(new Neuron(layers[i - 1], false, stdWeight));
-                        else
-                        {
-                            if(i != _layers.Length)
-                            {
-                                layers[i].Add(new Neuron(null, true));
-                            }
-                            else
-                            {
-                                layers[i].Add(new Neuron(layers[i - 1], false, stdWeight));
-                            }
-                        }
+                        //if (j != _layers[i].Length - 1)
+                            layers[i].Add(new Neuron(layers[i - 1], stdWeight));
+                        //else
+                        //{
+                        //    if(i != _layers.Length)
+                        //    {
+                        //        layers[i].Add(new Neuron(null, true));
+                        //    }
+                        //    else
+                        //    {
+                        //        layers[i].Add(new Neuron(layers[i - 1], false, stdWeight));
+                        //    }
+                        //}
                     }
                 }
             }
@@ -97,18 +97,35 @@ namespace NeuralNetwork
                 {
                     for (int j = 0; j < layers[i].Count; j++)
                     {
-                        layers[i][j].FindErrorAndLearn(true, null, 0, needOut[j], learnSpeed);
+                        layers[i][j].FindError(true, null, 0, needOut[j]);
                     }
                 }
                 else
                 {
                     for (int j = 0; j < layers[i].Count; j++)
                     {
-                        layers[i][j].FindErrorAndLearn(false, layers[i + 1], j, learnSpeed);
+                        layers[i][j].FindError(false, layers[i + 1], j);
                     }
                 }
             }
 
+            for (int i = layers.Length - 1; i >= 0; i--)
+            {
+                if (i == layers.Length - 1)
+                {
+                    for (int j = 0; j < layers[i].Count; j++)
+                    {
+                        layers[i][j].Correct(learnSpeed);
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < layers[i].Count; j++)
+                    {
+                        layers[i][j].Correct(learnSpeed);
+                    }
+                }
+            }
         }
     }
 }

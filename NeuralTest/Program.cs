@@ -17,14 +17,14 @@ namespace NeuralTest
             /*-------------TEST-DATA------------*/
 
             needOut[0] = new double[] { 0 };
-            needOut[1] = new double[] { 0 };
+            needOut[1] = new double[] { 1 };
             needOut[2] = new double[] { 0 };
             needOut[3] = new double[] { 1 };
 
-            input[0] = new double[] { 0, 0 };
-            input[1] = new double[] { 1, 0 };
-            input[2] = new double[] { 0, 1 };
-            input[3] = new double[] { 1, 1 };
+            input[0] = new double[] { 4, 0 };
+            input[1] = new double[] { 0, 20 };
+            input[2] = new double[] { 20, 0 };
+            input[3] = new double[] { 0, 4 };
 
             /*----------END-TEST-DATA-----------*/
 
