@@ -52,29 +52,49 @@ namespace NeuralTest
 
             bool Log = false;
             bool LogFile = false;
+            bool stdSettings = false;
+            int epohs = 100000;
 
             Network net = new Network(layers, 0.2, 0.1);
 
-            Console.Write("Epohs count: ");
+            Console.WriteLine("Обратите внимание! \nЕсли вы хотите сделать много эпох, \nто тогда, советуем не включать логирование в экран");
 
-            int epohs = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
 
-            Console.WriteLine("Log to screen? press key (y; n)");
-            ConsoleKeyInfo key = Console.ReadKey();
+            Console.WriteLine("Пользовательские настройки? нажмите клавишу (y - да; n - нет)");
+            ConsoleKeyInfo settings = Console.ReadKey();
 
-            if (key.Key == ConsoleKey.Y)
+            if (settings.Key != ConsoleKey.Y)
+            {
                 Log = true;
-
-            Console.WriteLine();
-
-            Console.WriteLine("Log to file? press key (y; n)");
-            ConsoleKeyInfo file = Console.ReadKey();
-
-            if (file.Key == ConsoleKey.Y)
                 LogFile = true;
-
+                stdSettings = true;
+            }
+                
             Console.WriteLine();
 
+            if (!stdSettings)
+            {
+                Console.Write("\nКоличество эпох: ");
+
+                epohs = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Логировать на экран? нажмите клавишу (y - да; n - нет)");
+                ConsoleKeyInfo key = Console.ReadKey();
+
+                if (key.Key == ConsoleKey.Y)
+                    Log = true;
+
+                Console.WriteLine();
+
+                Console.WriteLine("Логировать в файл? нажмите клавишу (y - да; n - нет)");
+                ConsoleKeyInfo file = Console.ReadKey();
+
+                if (file.Key == ConsoleKey.Y)
+                    LogFile = true;
+
+                Console.WriteLine();
+            }
 
             for (int i = 0; i < epohs; i++)
             {
@@ -108,11 +128,12 @@ namespace NeuralTest
                     errorLog.WriteLine(arifErr);
 
                 if (Log)
-                    Console.WriteLine($"Error epoh {i + 1} = {arifErr}");
+                    Console.WriteLine($"Ошибка в эпохе {i + 1} = {arifErr}");
 
                 //Thread.Sleep(10);
             }
 
+            Console.Write("Нажмиет любую кнопку . . . ");
             Console.ReadKey();
         }
     }
