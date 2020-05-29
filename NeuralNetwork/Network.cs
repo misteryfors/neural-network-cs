@@ -127,5 +127,34 @@ namespace NeuralNetwork
                 }
             }
         }
+
+        public double ErrorArif()
+        {
+            double err = 0;
+            for (int i = 0; i < layers.Length; i++)
+            {
+                if (i == 0)
+                    continue;
+
+                for (int j = 0; j < layers[i].Count; j++)
+                {
+                    err += layers[i][j].Error;
+                }
+            }
+
+            int count = 0;
+
+            for (int i = 0; i < layers.Length; i++)
+            {
+                if (i == 0)
+                    continue;
+
+                for (int j = 0; j < layers[i].Count; j++)
+                {
+                    count++;
+                }
+            }
+            return err /= count;
+        }
     }
 }
