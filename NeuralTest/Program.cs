@@ -11,20 +11,28 @@ namespace NeuralTest
     {
         static void Main(string[] args)
         {
-            double[][] needOut = new double[4][];
+            double[][] needOut = new double[8][];
 
-            double[][] input = new double[4][];
+            double[][] input = new double[8][];
             /*-------------TEST-DATA------------*/
 
             needOut[0] = new double[] { 0 };
             needOut[1] = new double[] { 1 };
             needOut[2] = new double[] { 0 };
             needOut[3] = new double[] { 1 };
+            needOut[4] = new double[] { 1 };
+            needOut[5] = new double[] { 0 };
+            needOut[6] = new double[] { 1 };
+            needOut[7] = new double[] { 1 };
 
-            input[0] = new double[] { 4, 0 };
-            input[1] = new double[] { 0, 20 };
-            input[2] = new double[] { 20, 0 };
-            input[3] = new double[] { 0, 4 };
+            input[0] = new double[] { 1, 0 };
+            input[1] = new double[] { 6, 20 };
+            input[2] = new double[] { 2, 0 };
+            input[3] = new double[] { 4, 44};
+            input[4] = new double[] { 6, 44 };
+            input[5] = new double[] { 8, 1 };
+            input[6] = new double[] { 10, 43 };
+            input[7] = new double[] { 11, 24 };
 
             /*----------END-TEST-DATA-----------*/
 
