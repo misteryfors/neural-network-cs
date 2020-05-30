@@ -111,7 +111,7 @@ namespace NerualNetwork_2._0
             OutputData = ActivationFunc(data);
             return true;
         }
-        public void Correct(double learnSpeed)
+        public void CorrectWeigts(double learnSpeed)
         {
             if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
                 return;
