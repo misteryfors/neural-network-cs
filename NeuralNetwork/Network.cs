@@ -128,7 +128,7 @@ namespace NeuralNetwork
             }
         }
 
-        public double ErrorArif()
+        public double QuadError()
         {
             double err = 0;
             for (int i = 0; i < layers.Length; i++)
@@ -138,10 +138,10 @@ namespace NeuralNetwork
 
                 for (int j = 0; j < layers[i].Count; j++)
                 {
-                    err += layers[i][j].Error;
+                    err += Math.Pow(layers[i][j].Error, 2);
                 }
             }
-
+            /*
             int count = 0;
 
             for (int i = 0; i < layers.Length; i++)
@@ -153,8 +153,8 @@ namespace NeuralNetwork
                 {
                     count++;
                 }
-            }
-            return err /= count;
+            }*/
+            return err /*/= count*/;
         }
     }
 }

@@ -112,7 +112,7 @@ namespace NeuralTest
 
                     net.Learn(needOut[j]);
                     
-                    Error[j] = net.ErrorArif();
+                    Error[j] = net.QuadError();
                 }
 
                 double arifErr = 0;

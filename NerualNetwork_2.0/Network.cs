@@ -108,5 +108,21 @@ namespace NerualNetwork_2_0
                 }
             }
         }
+
+        public double QuadError()
+        {
+            double err = 0;
+            for (int i = 0; i < layers.Length; i++)
+            {
+                if (i == 0)
+                    continue;
+
+                for (int j = 0; j < layers[i].Count; j++)
+                {
+                    err += Math.Pow(layers[i][j].Error, 2);
+                }
+            }
+            return err;
+        }
     }
 }

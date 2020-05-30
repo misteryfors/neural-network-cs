@@ -63,16 +63,8 @@ namespace NetTest_2_0
                 {
                     net.SetInputData(input[j]);
                     net.UpdateData();
-                    var data = net.GetOutputData();
-
-                    Console.WriteLine("______________\n");
-                    for (int k = 0; k < data.Length; k++)
-                    {
-                        Console.WriteLine(data[k]);
-                    }
-                    Console.WriteLine();
-
                     net.Learn(needOut[j]);
+                    Console.WriteLine($"Ошибка: {net.QuadError()}");
                 }
             }
             Console.Write("Нажмите любую кнопку . . . ");
