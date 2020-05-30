@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NerualNetwork_2._0
 {
-    public class Class1
+    class Neuron
     {
     }
 }
