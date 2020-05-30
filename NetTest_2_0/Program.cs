@@ -60,7 +60,7 @@ namespace NetTest_2_0
             Network net = new Network(maket.NetTypes, 0.2);
 
             // Ввод кол-ва эпох
-            Console.Write("\nКоличество эпох: ");
+            Console.Write("\nКоличество эпох (Больше 2000 нет смысла): ");
 
             epohs = Convert.ToInt32(Console.ReadLine());
 
