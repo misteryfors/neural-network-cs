@@ -14,6 +14,7 @@ namespace NerualNetwork_2_0
         BIAS,
         OUTPUT
     }
+
     class Neuron
     {
         public List<Neuron> prewLayer;

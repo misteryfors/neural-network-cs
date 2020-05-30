@@ -10,6 +10,13 @@ namespace NerualNetwork_2_0
     {
         List<Neuron>[] layers;
         double learnSpeed;
+
+        /// <summary>
+        /// Конструктор сети
+        /// </summary>
+        /// <param name="Maket"> Макет сети из класса NetConstructor</param>
+        /// <param name="_learnSpeed"> Коэфицент/скорость обучения </param>
+        /// <param name="stdWeight"> Стандартное значение всех весов </param>
         public Network(NeuronTypes[][] Maket, double _learnSpeed = 0.1, double stdWeight = 0.1)
         {
 
@@ -33,7 +40,10 @@ namespace NerualNetwork_2_0
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns> Возвращает массив данных с нейрона </returns>
         public double[] GetOutputData()
         {
             int lastLayer = layers.Length - 1;
@@ -46,6 +56,10 @@ namespace NerualNetwork_2_0
             return output;
         }
 
+        /// <summary>
+        /// Установка значений на входы
+        /// </summary>
+        /// <param name="inputData"> Массив входных значений для входных нейронов </param>
         public void SetInputData(double[] inputData)
         {
             int inputLayer = 0;
@@ -57,7 +71,9 @@ namespace NerualNetwork_2_0
                 layers[inputLayer][i].DataUpdate(inputData[i]);
             }
         }
-
+        /// <summary>
+        /// Обновление информации всех нейронов
+        /// </summary>
         public void UpdateData()
         {
             for (int i = 0; i < layers.Length; i++)
@@ -69,7 +85,10 @@ namespace NerualNetwork_2_0
                 }
             }
         }
-
+        /// <summary>
+        /// Функция обучения сети
+        /// </summary>
+        /// <param name="needOut"> Массив правильных значений для выходного слоя </param>
         public void Learn(double[] needOut)
         {
             for (int i = layers.Length - 1; i >= 0; i--)
@@ -108,7 +127,10 @@ namespace NerualNetwork_2_0
                 }
             }
         }
-
+        /// <summary>
+        /// Вычисление ошибки
+        /// </summary>
+        /// <returns>значение ошибки</returns>
         public double QuadError()
         {
             double err = 0;

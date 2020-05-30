@@ -8,12 +8,18 @@ namespace NerualNetwork_2_0
 {
     public class NetConstructor
     {
+        /// <summary>
+        /// Готовая сеть
+        /// </summary>
         public NeuronTypes[][] NetTypes
         {
             get;
             private set;
         }
-
+        /// <summary>
+        /// Конструктор макета сети по ступенчатому массиву, автоматически включает в себя нейрон смещения
+        /// </summary>
+        /// <param name="netMaket">Макет сети, без нейронов смещения (сам добавляет) </param>
         public NetConstructor(int[][] netMaket)
         {
             NetTypes = new NeuronTypes[netMaket.Length][];

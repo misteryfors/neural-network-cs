@@ -11,48 +11,55 @@ namespace NetTest_2_0
         static void Main(string[] args)
         {
 
-            StreamWriter errorLog = new StreamWriter("log.txt");
+            // объявления макета сети
+
+            int[][] netMaket = new int[3][];
+
+            netMaket[0] = new int[2];
+            netMaket[1] = new int[5];
+            netMaket[2] = new int[2];
+
+            // объявления потока для записи ошибок в эпохе
+            StreamWriter errorLog = new StreamWriter("log1.txt");
 
 
-
+            // Должно быть на выходе
             double[][] needOut = new double[8][];
 
+            // Данные на вход 
             double[][] input = new double[8][];
 
-            /*-------------TEST-DATA------------*/
+            #region dataInit
 
-            needOut[0] = new double[] { 1, 0 };
-            needOut[1] = new double[] { 0, 1 };
-            needOut[2] = new double[] { 1, 0 };
-            needOut[3] = new double[] { 0, 1 };
+            needOut[0] = new double[] { 0, 1 };
+            needOut[1] = new double[] { 1, 0 };
+            needOut[2] = new double[] { 0, 1 };
+            needOut[3] = new double[] { 1, 0 };
             needOut[4] = new double[] { 1, 0 };
             needOut[5] = new double[] { 0, 1 };
             needOut[6] = new double[] { 1, 0 };
-            needOut[7] = new double[] { 0, 1 };
+            needOut[7] = new double[] { 1, 0 };
 
-            input[0] = new double[] { 10, 0 };
-            input[1] = new double[] { 0, 10 };
-            input[2] = new double[] { 20, 0 };
-            input[3] = new double[] { 0, 20 };
-            input[4] = new double[] { 30, 0 };
-            input[5] = new double[] { 0, 30 };
-            input[6] = new double[] { 40, 0 };
-            input[7] = new double[] { 0, 40 };
+            input[0] = new double[] { 1, 0 };
+            input[1] = new double[] { 6, 20 };
+            input[2] = new double[] { 2, 0 };
+            input[3] = new double[] { 4, 44 };
+            input[4] = new double[] { 6, 44 };
+            input[5] = new double[] { 8, 1 };
+            input[6] = new double[] { 10, 43 };
+            input[7] = new double[] { 11, 24 };
 
-            /*----------END-TEST-DATA-----------*/
+            #endregion
 
-            int[][] layers = new int[3][];
+            int epohs;
 
-            layers[0] = new int[2];
-            layers[1] = new int[5];
-            layers[2] = new int[2];
+            // Создание конструктора сети
+            NetConstructor maket = new NetConstructor(netMaket);
 
-            int epohs = 100000;
-
-            NetConstructor maket = new NetConstructor(layers);
-
+            // Объявление сети
             Network net = new Network(maket.NetTypes, 0.2, 0.1);
 
+            // Ввод кол-ва эпох
             Console.Write("\nКоличество эпох: ");
 
             epohs = Convert.ToInt32(Console.ReadLine());
@@ -63,9 +70,12 @@ namespace NetTest_2_0
                 {
                     net.SetInputData(input[j]);
                     net.UpdateData();
+
                     net.Learn(needOut[j]);
-                    errorLog.WriteLine($"Ошибка: {net.QuadError()}");
+                    
                 }
+
+                errorLog.WriteLine(net.QuadError());
             }
             errorLog.Close();
             Console.Write("Нажмите любую кнопку . . . ");
