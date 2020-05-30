@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NerualNetwork_2._0
+namespace NerualNetwork_2_0
 {
     public class Network
     {
@@ -24,11 +24,11 @@ namespace NerualNetwork_2._0
                 {
                     if (i == 0)
                     {
-                        layers[i].Add(new Neuron(Maket[i][j], Maket[i], null, j, stdWeight));
+                        layers[i].Add(new Neuron(Maket[i][j], null, null, j, stdWeight));
                     }
                     else
                     {
-                        layers[i].Add(new Neuron(Maket[i][j], Maket[i], layers[i - 1], j, stdWeight));
+                        layers[i].Add(new Neuron(Maket[i][j], Maket[i - 1], layers[i - 1], j, stdWeight));
                     }
                 }
             }
@@ -52,6 +52,8 @@ namespace NerualNetwork_2._0
 
             for (int i = 0; i < layers[inputLayer].Count; i++)
             {
+                if (layers[inputLayer][i].Type == NeuronTypes.BIAS) continue;
+                
                 layers[inputLayer][i].DataUpdate(inputData[i]);
             }
         }
@@ -105,35 +107,6 @@ namespace NerualNetwork_2._0
                     }
                 }
             }
-        }
-
-        public double ErrorArif()
-        {
-            double err = 0;
-            for (int i = 0; i < layers.Length; i++)
-            {
-                if (i == 0)
-                    continue;
-
-                for (int j = 0; j < layers[i].Count; j++)
-                {
-                    err += layers[i][j].Error;
-                }
-            }
-
-            int count = 0;
-
-            for (int i = 0; i < layers.Length; i++)
-            {
-                if (i == 0)
-                    continue;
-
-                for (int j = 0; j < layers[i].Count; j++)
-                {
-                    count++;
-                }
-            }
-            return err /= count;
         }
     }
 }

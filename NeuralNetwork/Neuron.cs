@@ -135,7 +135,7 @@ namespace NeuralNetwork
 
             for (int i = 0; i < InputNeurons.Count; i++)
             {
-                double correct = deltaError * InputNeurons[i].OutputData * learnSpeed;
+                double correct = learnSpeed * deltaError * InputNeurons[i].OutputData ;
                 Weigts[i] += correct;
             }
         }
@@ -152,7 +152,7 @@ namespace NeuralNetwork
             {
                 for (int i = 0; i < prewLayer.Count; i++)
                 {
-                    Error += prewLayer[i].Weigts[indInLayer] * prewLayer[i].OutputData;
+                    Error += prewLayer[i].Weigts[indInLayer] * prewLayer[i].Error;
                 }
             }
         }

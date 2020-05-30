@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NerualNetwork_2._0
+namespace NerualNetwork_2_0
 {
     public class NetConstructor
     {

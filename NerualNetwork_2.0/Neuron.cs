@@ -5,7 +5,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NerualNetwork_2._0
+namespace NerualNetwork_2_0
 {
     public enum NeuronTypes
     {
@@ -52,26 +52,16 @@ namespace NerualNetwork_2._0
 
             prewLayer = _prewLayer;
             
-            int weigtsCount = 0;
-
-            for (int i = 0; i < prewLayerTypes.Length; i++)
+            if (type == NeuronTypes.INPUT || type == NeuronTypes.BIAS)
             {
-                if (type == NeuronTypes.INPUT || type == NeuronTypes.BIAS)
+                if (type == NeuronTypes.BIAS)
                 {
-                    if (type == NeuronTypes.BIAS)
-                    {
-                        OutputData = 1;
-                    }
-                    return;
+                    OutputData = 1;
                 }
-
-                if (prewLayerTypes[i] != NeuronTypes.BIAS)
-                {
-                    weigtsCount++;
-                }
+                return;
             }
 
-            Weigts = new double[weigtsCount];
+            Weigts = new double[prewLayerTypes.Length];
             for (int i = 0; i < Weigts.Length; i++)
             {
                 Weigts[i] = stdWeight;
@@ -120,7 +110,7 @@ namespace NerualNetwork_2._0
 
             for (int i = 0; i < prewLayer.Count; i++)
             {
-                double correct = deltaError * prewLayer[i].OutputData * learnSpeed;
+                double correct = learnSpeed * deltaError * prewLayer[i].OutputData;
                 Weigts[i] += correct;
             }
         }
@@ -141,7 +131,7 @@ namespace NerualNetwork_2._0
             {
                 for (int i = 0; i < NextLayer.Count; i++)
                 {
-                    Error += prewLayer[i].Weigts[indexInLayer] * NextLayer[i].OutputData;
+                    Error += NextLayer[i].Weigts[indexInLayer] * NextLayer[i].Error;
                 }
             }
         }
