@@ -17,7 +17,7 @@ namespace NerualNetwork_2_0
         /// <param name="Maket"> Макет сети из класса NetConstructor</param>
         /// <param name="_learnSpeed"> Коэфицент/скорость обучения </param>
         /// <param name="stdWeight"> Стандартное значение всех весов </param>
-        public Network(NeuronTypes[][] Maket, double _learnSpeed = 0.1, double stdWeight = 0.1)
+        public Network(NeuronTypes[][] Maket, double _learnSpeed = 0.1)
         {
 
             learnSpeed = _learnSpeed;
@@ -31,11 +31,11 @@ namespace NerualNetwork_2_0
                 {
                     if (i == 0)
                     {
-                        layers[i].Add(new Neuron(Maket[i][j], null, null, j, stdWeight));
+                        layers[i].Add(new Neuron(Maket[i][j], null, null, j));
                     }
                     else
                     {
-                        layers[i].Add(new Neuron(Maket[i][j], Maket[i - 1], layers[i - 1], j, stdWeight));
+                        layers[i].Add(new Neuron(Maket[i][j], Maket[i - 1], layers[i - 1], j));
                     }
                 }
             }

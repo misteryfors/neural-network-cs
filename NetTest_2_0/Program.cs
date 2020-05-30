@@ -57,7 +57,7 @@ namespace NetTest_2_0
             NetConstructor maket = new NetConstructor(netMaket);
 
             // Объявление сети
-            Network net = new Network(maket.NetTypes, 0.2, 0.1);
+            Network net = new Network(maket.NetTypes, 0.2);
 
             // Ввод кол-ва эпох
             Console.Write("\nКоличество эпох: ");

@@ -19,7 +19,7 @@ namespace NerualNetwork_2_0
     {
         public List<Neuron> prewLayer;
 
-        public double[] Weigts
+        public double[] Weigths
         {
             get;
             private set;
@@ -45,7 +45,7 @@ namespace NerualNetwork_2_0
 
         int indexInLayer;
 
-        public Neuron(NeuronTypes type, NeuronTypes[] prewLayerTypes, List<Neuron> _prewLayer, int _indexInLayer, double stdWeight = 0.1)
+        public Neuron(NeuronTypes type, NeuronTypes[] prewLayerTypes, List<Neuron> _prewLayer, int _indexInLayer)
         {
             indexInLayer = _indexInLayer;
 
@@ -62,10 +62,13 @@ namespace NerualNetwork_2_0
                 return;
             }
 
-            Weigts = new double[prewLayerTypes.Length];
-            for (int i = 0; i < Weigts.Length; i++)
+            Weigths = new double[prewLayerTypes.Length];
+
+            Random rand = new Random();
+
+            for (int i = 0; i < Weigths.Length; i++)
             {
-                Weigts[i] = stdWeight;
+                Weigths[i] = rand.NextDouble() - 0.5;
             }
         }
 
@@ -82,7 +85,7 @@ namespace NerualNetwork_2_0
             double[] neuron = new double[prewLayer.Count];
             for (int i = 0; i < prewLayer.Count; i++)
             {
-                neuron[i] = prewLayer[i].OutputData * Weigts[i];
+                neuron[i] = prewLayer[i].OutputData * Weigths[i];
             }
 
             double data = 0;
@@ -112,7 +115,7 @@ namespace NerualNetwork_2_0
             for (int i = 0; i < prewLayer.Count; i++)
             {
                 double correct = learnSpeed * deltaError * prewLayer[i].OutputData;
-                Weigts[i] += correct;
+                Weigths[i] += correct;
             }
         }
 
@@ -132,7 +135,7 @@ namespace NerualNetwork_2_0
             {
                 for (int i = 0; i < NextLayer.Count; i++)
                 {
-                    Error += NextLayer[i].Weigts[indexInLayer] * NextLayer[i].Error;
+                    Error += NextLayer[i].Weigths[indexInLayer] * NextLayer[i].Error;
                 }
             }
         }
