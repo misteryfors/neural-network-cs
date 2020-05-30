@@ -133,7 +133,7 @@ namespace NeuralTest
                 //Thread.Sleep(10);
             }
 
-            Console.Write("Нажмиет любую кнопку . . . ");
+            Console.Write("Нажмите любую кнопку . . . ");
             Console.ReadKey();
         }
     }
