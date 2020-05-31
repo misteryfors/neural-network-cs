@@ -31,11 +31,11 @@ namespace NerualNetwork_2_0
                 {
                     if (i == 0)
                     {
-                        layers[i].Add(new Neuron(Maket[i][j], null, null, j));
+                        layers[i].Add(new Neuron(Maket[i][j], null, null, j, true));
                     }
                     else
                     {
-                        layers[i].Add(new Neuron(Maket[i][j], Maket[i - 1], layers[i - 1], j));
+                        layers[i].Add(new Neuron(Maket[i][j], Maket[i - 1], layers[i - 1], j, true));
                     }
                 }
             }

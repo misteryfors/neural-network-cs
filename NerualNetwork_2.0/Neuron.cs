@@ -12,12 +12,15 @@ namespace NerualNetwork_2_0
         INPUT,
         HIDDEN,
         BIAS,
-        OUTPUT
+        OUTPUT,
+        ELMAN
     }
 
     class Neuron
     {
         public List<Neuron> prewLayer;
+
+        Neuron elmanNeuron;
 
         public double[] Weigths
         {
@@ -43,16 +46,20 @@ namespace NerualNetwork_2_0
             private set;
         }
 
+        bool isElmanNet;
+
         int indexInLayer;
 
-        public Neuron(NeuronTypes type, NeuronTypes[] prewLayerTypes, List<Neuron> _prewLayer, int _indexInLayer)
+        public Neuron(NeuronTypes type, NeuronTypes[] prewLayerTypes, List<Neuron> _prewLayer, int _indexInLayer, bool _isElmanNet = false)
         {
             indexInLayer = _indexInLayer;
 
             Type = type;
 
             prewLayer = _prewLayer;
-            
+
+            isElmanNet = _isElmanNet;
+
             if (type == NeuronTypes.INPUT || type == NeuronTypes.BIAS)
             {
                 if (type == NeuronTypes.BIAS)
@@ -62,7 +69,17 @@ namespace NerualNetwork_2_0
                 return;
             }
 
-            Weigths = new double[prewLayerTypes.Length];
+            if (type == NeuronTypes.HIDDEN && isElmanNet)
+            {
+                List<Neuron> thisNeuron = new List<Neuron>();
+                thisNeuron.Add(this);
+                elmanNeuron = new Neuron(NeuronTypes.ELMAN, null, thisNeuron, 0, true);
+                Weigths = new double[prewLayerTypes.Length + 1];
+            }
+            else
+            {
+                Weigths = new double[prewLayerTypes.Length];
+            }
 
             Random rand = new Random();
 
@@ -95,6 +112,12 @@ namespace NerualNetwork_2_0
             }
 
             OutputData = ActivationFunc(data);
+
+            if (Type == NeuronTypes.HIDDEN && isElmanNet)
+            {
+                elmanNeuron.DataUpdate();
+            }
+
             return true;
         }
         public bool DataUpdate(double data)
@@ -112,9 +135,25 @@ namespace NerualNetwork_2_0
 
             double deltaError = Error * (OutputData * (1 - OutputData));
 
-            for (int i = 0; i < prewLayer.Count; i++)
+            int countInLayer = prewLayer.Count;
+            
+            if (isElmanNet && Type == NeuronTypes.HIDDEN)
             {
-                double correct = learnSpeed * deltaError * prewLayer[i].OutputData;
+                countInLayer++;
+            }
+
+            for (int i = 0; i < countInLayer; i++)
+            {
+                double correct;
+                if (isElmanNet && Type == NeuronTypes.HIDDEN && i == countInLayer - 1)
+                {
+                    correct = learnSpeed * deltaError * elmanNeuron.OutputData;
+                }
+                else
+                {
+                    correct = learnSpeed * deltaError * prewLayer[i].OutputData;
+                }
+
                 Weigths[i] += correct;
             }
         }
@@ -135,9 +174,17 @@ namespace NerualNetwork_2_0
             {
                 for (int i = 0; i < NextLayer.Count; i++)
                 {
-                    Error += NextLayer[i].Weigths[indexInLayer] * NextLayer[i].Error;
+                     Error += NextLayer[i].Weigths[indexInLayer] * NextLayer[i].Error;
                 }
             }
+        }
+
+        public void ElmanDataSet()
+        {
+            if (Type != NeuronTypes.ELMAN)
+                return;
+
+            OutputData = ActivationFunc(0);
         }
     }
 }
