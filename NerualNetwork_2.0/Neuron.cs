@@ -68,12 +68,15 @@ namespace NerualNetwork_2_0
                 }
                 return;
             }
+            List<Neuron> thisNeuron = new List<Neuron>();
+            thisNeuron.Add(this);
+
+            
 
             if (type == NeuronTypes.HIDDEN && isElmanNet)
             {
-                List<Neuron> thisNeuron = new List<Neuron>();
-                thisNeuron.Add(this);
-                elmanNeuron = new Neuron(NeuronTypes.ELMAN, null, thisNeuron, 0, true);
+                NeuronTypes[] toElman = new NeuronTypes[1] { NeuronTypes.HIDDEN };
+                elmanNeuron = new Neuron(NeuronTypes.ELMAN, toElman, thisNeuron, 0, true);
                 Weigths = new double[prewLayerTypes.Length + 1];
             }
             else
