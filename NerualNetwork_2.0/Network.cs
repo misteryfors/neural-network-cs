@@ -161,6 +161,7 @@ namespace NerualNetwork_2_0
 
                 for (int j = 0; j < layers[i].Count; j++)
                 {
+                    if (layers[i][j].Type == NeuronTypes.BIAS) continue;
                     for (int k = 0; k < layers[i][j].Weigths.Length; k++)
                     {
                         writer.Write(layers[i][j].Weigths[k]);
@@ -174,7 +175,6 @@ namespace NerualNetwork_2_0
         }
         public void LoadData()
         {
-
             StreamReader reader = new StreamReader("LastSave.txt");
 
             string line;
@@ -185,14 +185,21 @@ namespace NerualNetwork_2_0
                     continue;
 
                 line = reader.ReadLine();
+
+                if (line == null)
+                {
+                    break;
+                }
+
                 for (int j = 0; j < layers[i].Count; j++)
                 {
-                    int index = line.IndexOf(";");
-                    string value = line.Remove(index);
-                    line = line.Substring(index + 1);
+                    if (layers[i][j].Type == NeuronTypes.BIAS) continue;
 
                     for (int k = 0; k < layers[i][j].Weigths.Length; k++)
                     {
+                        int index = line.IndexOf(";");
+                        string value = line.Remove(index);
+                        line = line.Substring(index + 1);
                         layers[i][j].WriteWeight(k, Convert.ToDouble(value));
                     }
                 }

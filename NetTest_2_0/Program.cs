@@ -16,7 +16,7 @@ namespace NetTest_2_0
             int[][] netMaket = new int[3][];
 
             netMaket[0] = new int[2];
-            netMaket[1] = new int[5];
+            netMaket[1] = new int[2];
             netMaket[2] = new int[2];
 
             // объявления потока для записи ошибок в эпохе
@@ -59,6 +59,8 @@ namespace NetTest_2_0
             // Объявление сети
             Network net = new Network(maket.NetTypes, 0.2);
 
+            net.LoadData();
+
             // Ввод кол-ва эпох
             Console.Write("\nКоличество эпох (Больше 2000 нет смысла): ");
 
@@ -77,6 +79,9 @@ namespace NetTest_2_0
 
                 errorLog.WriteLine(net.QuadError());
             }
+
+            net.SaveData();
+
             errorLog.Close();
             Console.Write("Нажмите любую кнопку . . . ");
             Console.ReadKey();
