@@ -77,6 +77,12 @@ namespace NerualNetwork_2_0
             return 1 / (1 + Math.Pow(Math.E, -data));
         }
 
+        double DeltaFunc(double y)
+        {
+            return y * (1 - y);
+        }
+
+
         public bool DataUpdate()
         {
             if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
@@ -110,7 +116,7 @@ namespace NerualNetwork_2_0
             if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
                 return;
 
-            double deltaError = Error * (OutputData * (1 - OutputData));
+            double deltaError = Error * DeltaFunc(OutputData);
 
             for (int i = 0; i < prewLayer.Count; i++)
             {
@@ -138,6 +144,16 @@ namespace NerualNetwork_2_0
                     Error += NextLayer[i].Weigths[indexInLayer] * NextLayer[i].Error;
                 }
             }
+        }
+
+        public bool WriteWeight(int index, double value)
+        {
+            if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
+                return false;
+
+            Weigths[index] = value;
+
+            return true;
         }
     }
 }
