@@ -182,7 +182,7 @@ namespace NerualNetwork_2_0
             {
                 for (int i = 0; i < NextLayer.Count; i++)
                 {
-                    if (Type == NeuronTypes.BIAS)
+                    if (NextLayer[i].Type == NeuronTypes.BIAS)
                         continue;
                     Error += NextLayer[i].Weigths[indexInLayer] * NextLayer[i].Error;
                 }
