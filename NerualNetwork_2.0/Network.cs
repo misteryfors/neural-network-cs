@@ -149,10 +149,10 @@ namespace NerualNetwork_2_0
         }
 
 
-        public void SaveData()
+        public void SaveData(string path = "LastSave.txt")
         {
 
-            StreamWriter writer = new StreamWriter("LastSave.txt", false);
+            StreamWriter writer = new StreamWriter(path, false);
             
             for (int i = 0; i < layers.Length; i++)
             {
@@ -173,9 +173,9 @@ namespace NerualNetwork_2_0
 
             writer.Close();
         }
-        public void LoadData()
+        public void LoadData(string path = "LastSave.txt")
         {
-            StreamReader reader = new StreamReader("LastSave.txt");
+            StreamReader reader = new StreamReader(path);
 
             string line;
 
