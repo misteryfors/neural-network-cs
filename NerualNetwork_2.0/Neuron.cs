@@ -196,5 +196,15 @@ namespace NerualNetwork_2_0
 
             OutputData = ActivationFunc(0);
         }
+
+        public bool WriteWeight(int index, double value)
+        {
+            if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
+                return false;
+
+            Weigths[index] = value;
+
+            return true;
+        }
     }
 }
