@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -145,6 +146,65 @@ namespace NerualNetwork_2_0
                 }
             }
             return err;
+        }
+
+        public void SaveData()
+        {
+
+            StreamWriter writer = new StreamWriter("LastSave.txt", false);
+
+            for (int i = 0; i < layers.Length; i++)
+            {
+                if (i == 0)
+                    continue;
+
+                for (int j = 0; j < layers[i].Count; j++)
+                {
+                    if (layers[i][j].Type == NeuronTypes.BIAS) continue;
+                    for (int k = 0; k < layers[i][j].Weigths.Length; k++)
+                    {
+                        writer.Write(layers[i][j].Weigths[k]);
+                        writer.Write(" ; ");
+                    }
+                }
+                writer.WriteLine();
+            }
+
+            writer.Close();
+        }
+        public void LoadData()
+        {
+            StreamReader reader = new StreamReader("LastSave.txt");
+
+            string line;
+
+            for (int i = 0; i < layers.Length; i++)
+            {
+                if (i == 0)
+                    continue;
+
+                line = reader.ReadLine();
+
+                if (line == null)
+                {
+                    break;
+                }
+
+                for (int j = 0; j < layers[i].Count; j++)
+                {
+                    if (layers[i][j].Type == NeuronTypes.BIAS) continue;
+
+                    for (int k = 0; k < layers[i][j].Weigths.Length; k++)
+                    {
+                        int index = line.IndexOf(";");
+                        string value = line.Remove(index);
+                        line = line.Substring(index + 1);
+                        layers[i][j].WriteWeight(k, Convert.ToDouble(value));
+                    }
+                }
+            }
+
+            reader.Close();
         }
     }
 }
