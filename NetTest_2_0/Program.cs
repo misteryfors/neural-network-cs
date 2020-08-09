@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using NerualNetwork_2_0;
+using NerualNetowork.Rewrite;
 using System.Threading;
 using System.IO;
 
-namespace NetTest_2_0
+namespace NetTest
 {
     class Program
     {
@@ -13,11 +13,11 @@ namespace NetTest_2_0
 
             // объявления макета сети
 
-            int[][] netMaket = new int[3][];
+            int[] netMaket = new int[3];
 
-            netMaket[0] = new int[2];
-            netMaket[1] = new int[2];
-            netMaket[2] = new int[2];
+            netMaket[0] = 2;
+            netMaket[1] = 4;
+            netMaket[2] = 2;
 
             // объявления потока для записи ошибок в эпохе
             StreamWriter errorLog = new StreamWriter("log1.txt");
@@ -54,12 +54,12 @@ namespace NetTest_2_0
             int epohs;
 
             // Создание конструктора сети
-            NetConstructor maket = new NetConstructor(netMaket);
+            NetworkConstructor maket = new NetworkConstructor(netMaket);
 
             // Объявление сети
-            Network net = new Network(maket.NetTypes, 0.2);
+            NerualNetwork net = maket.GetNet(0.2);
 
-            net.LoadData();
+            //net.LoadData();
 
             // Ввод кол-ва эпох
             Console.Write("\nКоличество эпох (Больше 2000 нет смысла): ");
@@ -70,14 +70,14 @@ namespace NetTest_2_0
             {
                 for (int j = 0; j < input.Length; j++)
                 {
-                    net.SetInputData(input[j]);
+                    net.SetData(input[j]);
                     net.UpdateData();
 
                     net.Learn(needOut[j]);
                     
                 }
 
-                errorLog.WriteLine(net.QuadError());
+                errorLog.WriteLine(net.GetError());
             }
 
             net.SaveData();

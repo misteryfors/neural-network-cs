@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7BD6EDF7-24BF-41BD-8D65-A1FF26494F7A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>NetTest_2_0</RootNamespace>
-    <AssemblyName>NetTest_2_0</AssemblyName>
+    <RootNamespace>NetTest</RootNamespace>
+    <AssemblyName>NetTest</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>NetTest.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,9 +53,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NerualNetwork_2.0\NerualNetwork_2_0.csproj">
-      <Project>{f3a8b637-e323-4c9a-b48a-9c112f1abf22}</Project>
-      <Name>NerualNetwork_2_0</Name>
+    <ProjectReference Include="..\NerualNetowork.Rewrite\NerualNetowork.Rewrite.csproj">
+      <Project>{9ebae3c3-1106-481e-9070-e3ed203b5cc1}</Project>
+      <Name>NerualNetowork.Rewrite</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

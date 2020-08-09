@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerualNetwork_2_0", "NerualNetwork_2.0\NerualNetwork_2_0.csproj", "{F3A8B637-E323-4C9A-B48A-9C112F1ABF22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTest_2_0", "NetTest_2_0\NetTest_2_0.csproj", "{7BD6EDF7-24BF-41BD-8D65-A1FF26494F7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTest", "NetTest_2_0\NetTest.csproj", "{7BD6EDF7-24BF-41BD-8D65-A1FF26494F7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerualNetowork.Rewrite", "NerualNetowork.Rewrite\NerualNetowork.Rewrite.csproj", "{9EBAE3C3-1106-481E-9070-E3ED203B5CC1}"
 EndProject
