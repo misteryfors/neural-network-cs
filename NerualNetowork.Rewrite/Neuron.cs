@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NerualNetwork_2_0
+namespace NerualNetowork.Rewrite
 {
-    public enum NeuronTypes
+    public enum NeruonType
     {
         INPUT,
         HIDDEN,
@@ -21,7 +21,7 @@ namespace NerualNetwork_2_0
             private set;
         }
 
-        public NeuronTypes Type
+        public NeruonType Type
         {
             get;
             private set;
@@ -41,24 +41,22 @@ namespace NerualNetwork_2_0
 
         int indexInLayer;
 
-        public Neuron(NeuronTypes type, NeuronTypes[] prewLayerTypes, List<Neuron> _prewLayer, int _indexInLayer)
+        public Neuron(NeruonType type, int _indexInLayer, NeruonType[] Neurons, List<Neuron> _prewLayer)
         {
             indexInLayer = _indexInLayer;
-
             Type = type;
-
             prewLayer = _prewLayer;
-            
-            if (type == NeuronTypes.INPUT || type == NeuronTypes.BIAS)
+
+            if (type == NeruonType.INPUT || type == NeruonType.BIAS)
             {
-                if (type == NeuronTypes.BIAS)
+                if (type == NeruonType.BIAS)
                 {
                     OutputData = 1;
                 }
                 return;
             }
 
-            Weigths = new double[prewLayerTypes.Length];
+            Weigths = new double[Neurons.Length];
 
             Random rand = new Random();
 
@@ -81,16 +79,18 @@ namespace NerualNetwork_2_0
 
         public bool DataUpdate()
         {
-            if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
+            if (Type == NeruonType.INPUT || Type == NeruonType.BIAS)
                 return false;
 
             double[] neuron = new double[prewLayer.Count];
+
             for (int i = 0; i < prewLayer.Count; i++)
             {
                 neuron[i] = prewLayer[i].OutputData * Weigths[i];
             }
 
             double data = 0;
+
             for (int i = 0; i < neuron.Length; i++)
             {
                 data += neuron[i];
@@ -101,7 +101,7 @@ namespace NerualNetwork_2_0
         }
         public bool DataUpdate(double data)
         {
-            if (Type != NeuronTypes.INPUT)
+            if (Type != NeruonType.INPUT)
                 return false;
 
             OutputData = ActivationFunc(data);
@@ -109,7 +109,7 @@ namespace NerualNetwork_2_0
         }
         public void CorrectWeigts(double learnSpeed)
         {
-            if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
+            if (Type == NeruonType.INPUT || Type == NeruonType.BIAS)
                 return;
 
             double deltaError = Error * DeltaFunc(OutputData);
@@ -125,10 +125,10 @@ namespace NerualNetwork_2_0
         {
             Error = 0;
 
-            if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
+            if (Type == NeruonType.INPUT || Type == NeruonType.BIAS)
                 return;
 
-            if (Type == NeuronTypes.OUTPUT)
+            if (Type == NeruonType.OUTPUT)
             {
                 Error = needOut - OutputData;
                 return;
@@ -137,7 +137,7 @@ namespace NerualNetwork_2_0
             {
                 for (int i = 0; i < NextLayer.Count; i++)
                 {
-                    if (NextLayer[i].Type == NeuronTypes.BIAS)
+                    if (NextLayer[i].Type == NeruonType.BIAS)
                         continue;
                     Error += NextLayer[i].Weigths[indexInLayer] * NextLayer[i].Error;
                 }
@@ -146,7 +146,7 @@ namespace NerualNetwork_2_0
 
         public bool WriteWeight(int index, double value)
         {
-            if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
+            if (Type == NeruonType.INPUT || Type == NeruonType.BIAS)
                 return false;
 
             Weigths[index] = value;
