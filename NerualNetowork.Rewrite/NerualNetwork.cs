@@ -200,10 +200,14 @@ namespace NerualNetowork.Rewrite
         /// Загрузка значений весов
         /// </summary>
         /// <param name="path">Путь к файлу с которого идёт загрузка</param>
-        public void LoadData(string path = "LastSave.nert")
+        public void LoadData(int offset = 0, string path = "LastSave.nert")
         {
             // Объявление потока чтения
             BinaryReader reader = new BinaryReader(new StreamReader(path).BaseStream);
+
+            offset *= 8;
+
+            reader.BaseStream.Position = offset;
 
             for (int i = 0; i < layers.Length; i++)
             {
