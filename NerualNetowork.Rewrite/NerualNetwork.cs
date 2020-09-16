@@ -170,10 +170,10 @@ namespace NerualNetowork.Rewrite
         /// Сохранение весов в такстовый документ
         /// </summary>
         /// <param name="path">Путь к файлу</param>
-        public void SaveData(string path = "LastSave.txt")
+        public void SaveData(string path = "LastSave.nert")
         {
             // Объявление потока записи
-            StreamWriter writer = new StreamWriter(path, false);
+            BinaryWriter writer = new BinaryWriter(new StreamWriter(path, false).BaseStream);
 
             for (int i = 0; i < layers.Length; i++)
             {
@@ -189,13 +189,9 @@ namespace NerualNetowork.Rewrite
                     for (int k = 0; k < layers[i][j].Weigths.Length; k++)
                     {
                         writer.Write(layers[i][j].Weigths[k]);
-
-                        writer.Write(" ; ");
                     }
                 }
-                writer.WriteLine();
             }
-
             // закрытие потока
             writer.Close();
         }
@@ -204,26 +200,16 @@ namespace NerualNetowork.Rewrite
         /// Загрузка значений весов
         /// </summary>
         /// <param name="path">Путь к файлу с которого идёт загрузка</param>
-        public void LoadData(string path = "LastSave.txt")
+        public void LoadData(string path = "LastSave.nert")
         {
             // Объявление потока чтения
-            StreamReader reader = new StreamReader(path);
-
-            // последняя строка (слой)
-            string line;
+            BinaryReader reader = new BinaryReader(new StreamReader(path).BaseStream);
 
             for (int i = 0; i < layers.Length; i++)
             {
                 // пропускаем первый слой, так как у него нет весов
                 if (i == 0)
                     continue;
-
-                // читаем слой
-                line = reader.ReadLine();
-
-                // если ничего там нет то выходим
-                if (line == null)
-                    break;
 
                 for (int j = 0; j < layers[i].Count; j++)
                 {
@@ -233,12 +219,7 @@ namespace NerualNetowork.Rewrite
                     // здесь идёт разбиение слоя на веса
                     for (int k = 0; k < layers[i][j].Weigths.Length; k++)
                     {
-                        int index = line.IndexOf(";");
-                        string value = line.Remove(index);
-                        line = line.Substring(index + 1);
-
-                        // запись распарсеного веса
-                        layers[i][j].WriteWeight(k, Convert.ToDouble(value));
+                        layers[i][j].WriteWeight(k, reader.ReadDouble());
                     }
                 }
             }
