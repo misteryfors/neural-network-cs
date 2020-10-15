@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//Copyright (c) 2020 BonMAS14
 namespace NerualNetwork_2_0
 {
     public class Network
