@@ -59,7 +59,7 @@ namespace NetTest
             // Объявление сети
             NerualNetwork net = maket.GetNet(0.2);
 
-            //net.LoadData();
+            net.LoadData(0,@"C:\Users\10PC\Documents\neural-network-cs-master\zzz");
 
             // Ввод кол-ва эпох
             Console.Write("\nКоличество эпох (Больше 2000 нет смысла): ");
@@ -80,7 +80,7 @@ namespace NetTest
                 errorLog.WriteLine(net.GetError());
             }
 
-            net.SaveData();
+            net.SaveData(@"C:\Users\10PC\Documents\neural-network-cs-master\zzz");
 
             errorLog.Close();
             Console.Write("Нажмите любую кнопку . . . ");

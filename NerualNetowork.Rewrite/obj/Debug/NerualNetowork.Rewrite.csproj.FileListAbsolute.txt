@@ -1,0 +1,6 @@
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetowork.Rewrite\bin\Debug\NerualNetowork.Rewrite.dll
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetowork.Rewrite\bin\Debug\NerualNetowork.Rewrite.pdb
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetowork.Rewrite\obj\Debug\NerualNetowork.Rewrite.csproj.AssemblyReference.cache
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetowork.Rewrite\obj\Debug\NerualNetowork.Rewrite.csproj.CoreCompileInputs.cache
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetowork.Rewrite\obj\Debug\NerualNetowork.Rewrite.dll
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetowork.Rewrite\obj\Debug\NerualNetowork.Rewrite.pdb

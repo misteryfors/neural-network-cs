@@ -3,6 +3,7 @@ using System.Collections.Generic;
 //Copyright (c) 2020 BonMAS14
 namespace NerualNetwork_2_0
 {
+    //
     public enum NeuronTypes
     {
         INPUT,
@@ -15,24 +16,25 @@ namespace NerualNetwork_2_0
     {
         public List<Neuron> prewLayer;
 
+        //Веса связей
         public double[] Weigths
         {
             get;
             private set;
         }
-
+        //Тип нейрона
         public NeuronTypes Type
         {
             get;
             private set;
         }
-
+        // выходные данные
         public double OutputData
         {
             get;
             private set;
         }
-
+        //ошибка
         public double Error
         {
             get;
@@ -40,7 +42,7 @@ namespace NerualNetwork_2_0
         }
 
         int indexInLayer;
-
+        //инициализация нейрона
         public Neuron(NeuronTypes type, NeuronTypes[] prewLayerTypes, List<Neuron> _prewLayer, int _indexInLayer)
         {
             indexInLayer = _indexInLayer;
@@ -68,17 +70,20 @@ namespace NerualNetwork_2_0
             }
         }
 
+        //функция активации 1/(1+e^(-x)
+        //Выдаёт результат в пределах от 0 до 1
         double ActivationFunc(double data)
         {
             return 1 / (1 + Math.Pow(Math.E, -data));
         }
 
+        //функция коректировки значения 
         double DeltaFunc(double y)
         {
             return y * (1 - y);
         }
 
-
+        //функция передачи заряда между нейронами
         public bool DataUpdate()
         {
             if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
@@ -99,6 +104,8 @@ namespace NerualNetwork_2_0
             OutputData = ActivationFunc(data);
             return true;
         }
+        //функция прохождения заряда через нейрон 
+        //Значения могут принимать только входные нейроны
         public bool DataUpdate(double data)
         {
             if (Type != NeuronTypes.INPUT)
@@ -107,6 +114,7 @@ namespace NerualNetwork_2_0
             OutputData = ActivationFunc(data);
             return true;
         }
+        //Функция корректировки вессов в соответствии с полученной ошибкой
         public void CorrectWeigts(double learnSpeed)
         {
             if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
@@ -121,6 +129,7 @@ namespace NerualNetwork_2_0
             }
         }
 
+        //Функия получения значения ошибки
         public void FindError(List<Neuron> NextLayer, double needOut = 0)
         {
             Error = 0;
@@ -143,7 +152,7 @@ namespace NerualNetwork_2_0
                 }
             }
         }
-
+        //Функция записи весов
         public bool WriteWeight(int index, double value)
         {
             if (Type == NeuronTypes.INPUT || Type == NeuronTypes.BIAS)
