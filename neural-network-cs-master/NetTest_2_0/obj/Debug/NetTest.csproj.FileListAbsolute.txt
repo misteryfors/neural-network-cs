@@ -1,0 +1,11 @@
+C:\Users\10PC\Documents\neural-network-cs-master\NetTest_2_0\bin\Debug\NetTest.exe.config
+C:\Users\10PC\Documents\neural-network-cs-master\NetTest_2_0\bin\Debug\NetTest.exe
+C:\Users\10PC\Documents\neural-network-cs-master\NetTest_2_0\bin\Debug\NetTest.pdb
+C:\Users\10PC\Documents\neural-network-cs-master\NetTest_2_0\bin\Debug\NerualNetowork.Rewrite.dll
+C:\Users\10PC\Documents\neural-network-cs-master\NetTest_2_0\bin\Debug\NerualNetowork.Rewrite.pdb
+C:\Users\10PC\Documents\neural-network-cs-master\NetTest_2_0\obj\Debug\NetTest.csproj.AssemblyReference.cache
+C:\Users\10PC\Documents\neural-network-cs-master\NetTest_2_0\obj\Debug\NetTest.csproj.SuggestedBindingRedirects.cache
+C:\Users\10PC\Documents\neural-network-cs-master\NetTest_2_0\obj\Debug\NetTest.csproj.CoreCompileInputs.cache
+C:\Users\10PC\Documents\neural-network-cs-master\NetTest_2_0\obj\Debug\NetTest.csproj.CopyComplete
+C:\Users\10PC\Documents\neural-network-cs-master\NetTest_2_0\obj\Debug\NetTest.exe
+C:\Users\10PC\Documents\neural-network-cs-master\NetTest_2_0\obj\Debug\NetTest.pdb

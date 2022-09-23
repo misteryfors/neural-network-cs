@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerualNetwork_2_0", "NerualNetwork_2.0\NerualNetwork_2_0.csproj", "{F3A8B637-E323-4C9A-B48A-9C112F1ABF22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTest", "NetTest_2_0\NetTest.csproj", "{7BD6EDF7-24BF-41BD-8D65-A1FF26494F7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerualNetowork.Rewrite", "NerualNetowork.Rewrite\NerualNetowork.Rewrite.csproj", "{9EBAE3C3-1106-481E-9070-E3ED203B5CC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3A8B637-E323-4C9A-B48A-9C112F1ABF22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A8B637-E323-4C9A-B48A-9C112F1ABF22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A8B637-E323-4C9A-B48A-9C112F1ABF22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A8B637-E323-4C9A-B48A-9C112F1ABF22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BD6EDF7-24BF-41BD-8D65-A1FF26494F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD6EDF7-24BF-41BD-8D65-A1FF26494F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD6EDF7-24BF-41BD-8D65-A1FF26494F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD6EDF7-24BF-41BD-8D65-A1FF26494F7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EBAE3C3-1106-481E-9070-E3ED203B5CC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EBAE3C3-1106-481E-9070-E3ED203B5CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EBAE3C3-1106-481E-9070-E3ED203B5CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EBAE3C3-1106-481E-9070-E3ED203B5CC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1972B7C0-49C8-4B90-827A-3B1357EFEEDF}
+	EndGlobalSection
+EndGlobal

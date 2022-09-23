@@ -1,0 +1,6 @@
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetwork_2.0\bin\Debug\NerualNetwork_2.0.dll
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetwork_2.0\bin\Debug\NerualNetwork_2.0.pdb
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetwork_2.0\obj\Debug\NerualNetwork_2_0.csproj.AssemblyReference.cache
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetwork_2.0\obj\Debug\NerualNetwork_2_0.csproj.CoreCompileInputs.cache
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetwork_2.0\obj\Debug\NerualNetwork_2.0.dll
+C:\Users\10PC\Documents\neural-network-cs-master\NerualNetwork_2.0\obj\Debug\NerualNetwork_2.0.pdb
