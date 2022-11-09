@@ -12,7 +12,12 @@ namespace NetTest
         {
 
             // объявления макета сети
-
+            if File.Exists(@"C:\Users\10PC\Documents\neural-network-cs-master\zzz")
+            {
+                net.LoadData(0,@"C:\Users\10PC\Documents\neural-network-cs-master\zzz");
+            }
+            else
+            {
             int[] netMaket = new int[3];
 
             netMaket[0] = 2;
@@ -51,15 +56,15 @@ namespace NetTest
 
             #endregion
 
-            int epohs;
+            
 
             // Создание конструктора сети
             NetworkConstructor maket = new NetworkConstructor(netMaket);
 
             // Объявление сети
             NerualNetwork net = maket.GetNet(0.2);
-
-            net.LoadData(0,@"C:\Users\10PC\Documents\neural-network-cs-master\zzz");
+            }
+            int epohs;
 
             // Ввод кол-ва эпох
             Console.Write("\nКоличество эпох (Больше 2000 нет смысла): ");
